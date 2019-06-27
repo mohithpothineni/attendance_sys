@@ -57,10 +57,9 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
             displayName: displayName
         },
         authenticatorSelection: {
-        authenticatorAttachment: "cross-platform",
         },
 
-        timeout:6000,
+        timeout:14000,
 
         attestation: 'direct',
 
