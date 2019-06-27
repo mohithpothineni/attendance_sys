@@ -5,13 +5,17 @@ const cookieParser  = require('cookie-parser');
 const urllib        = require('url');
 const path          = require('path');
 const crypto        = require('crypto');
+const x509          = require('@fidm/x509');
+const iso_3166_1    = require('iso-3166-1');
 
 const config        = require('./config.json');
 const defaultroutes = require('./routes/default');
 const passwordauth  = require('./routes/password');
 const webuathnauth  = require('./routes/webauthn.js');
 
-const app           = express();
+
+
+const app = express();
 
 app.use(bodyParser.json());
 
@@ -32,10 +36,15 @@ app.use('/', defaultroutes)
 app.use('/password', passwordauth)
 app.use('/webauthn', webuathnauth)
 
+
+
+
 var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 app.listen(server_port, server_host, function() {
     console.log('Listening on port %d', server_port);
 });
+
+
 
 module.exports = app;
