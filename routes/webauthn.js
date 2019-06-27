@@ -78,7 +78,7 @@ router.post('/response', (request, response) => {
     if(clientData.origin !== config.origin) {
         response.json({
             'status': 'failed',
-            'message': 'Origins don\'t match!'
+            'message': 'Origins dont match!'
         })
     }
 
