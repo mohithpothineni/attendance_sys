@@ -36,8 +36,8 @@ router.get('/personalInfo', (request, response) => {
     } else {
         response.json({
             'status': 'ok',
-            'name': database[request.session.username].name,
-            'theSecret': '<p>lol</p>'
+            'name': "sam",
+            'theSecret': "<p>lol</p>"
         })
     }
 })
