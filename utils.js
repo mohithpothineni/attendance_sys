@@ -60,7 +60,7 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
         
         },
 
-        timeout:6000,
+        timeout:12000,
 
         attestation: 'direct',
 
