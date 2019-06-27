@@ -5,6 +5,8 @@ const base64url = require('base64url');
 const router    = express.Router();
 const database  = require('./db');
 
+/* ---------- ROUTES START ---------- */
+
 router.post('/register', (request, response) => {
     if(!request.body || !request.body.username || !request.body.name) {
         response.json({
@@ -34,44 +36,20 @@ router.post('/register', (request, response) => {
         'authenticators': []
     }
 
-    let challengeMakeCred    = utils.generateServerMakeCredRequest(username, name, database[username].id)
+    let challengeMakeCred    = utils.generateServerMakeCredRequest(username, 
+                                                            name, database[username].id)
     challengeMakeCred.status = 'ok'
 
     request.session.challenge = challengeMakeCred.challenge;
     request.session.username  = username;
 
     response.json(challengeMakeCred)
+
+
+    
 })
 
-router.post('/login', (request, response) => {
-    if(!request.body || !request.body.username) {
-        response.json({
-            'status': 'failed',
-            'message': 'Request missing username field!'
-        })
 
-        return
-    }
-
-    let username = request.body.username;
-
-    if(!database[username] || !database[username].registered) {
-        response.json({
-            'status': 'failed',
-            'message': `User ${username} does not exist!`
-        })
-
-        return
-    }
-
-    let getAssertion    = utils.generateServerGetAssertion(database[username].authenticators)
-    getAssertion.status = 'ok'
-
-    request.session.challenge = getAssertion.challenge;
-    request.session.username  = username;
-
-    response.json(getAssertion)
-})
 
 router.post('/response', (request, response) => {
     if(!request.body       || !request.body.id
@@ -104,6 +82,7 @@ router.post('/response', (request, response) => {
         })
     }
 
+    
     let result;
     if(webauthnResp.response.attestationObject !== undefined) {
         /* This is create cred */
@@ -132,6 +111,41 @@ router.post('/response', (request, response) => {
             'message': 'Can not authenticate signature!'
         })
     }
+
+
+
 })
+
+router.post('/login', (request, response) => {
+    if(!request.body || !request.body.username) {
+        response.json({
+            'status': 'failed',
+            'message': 'Request missing username field!'
+        })
+
+        return
+    }
+
+    let username = request.body.username;
+
+    if(!database[username] || !database[username].registered) {
+        response.json({
+            'status': 'failed',
+            'message': `User ${username} does not exist!`
+        })
+
+        return
+    }
+
+    let getAssertion    = utils.generateServerGetAssertion(database[username].authenticators)
+    getAssertion.status = 'ok'
+
+    request.session.challenge = getAssertion.challenge;
+    request.session.username  = username;
+
+    response.json(getAssertion)
+})
+
+/* ---------- ROUTES END ---------- */
 
 module.exports = router;
