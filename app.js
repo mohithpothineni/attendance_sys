@@ -37,16 +37,17 @@ app.use('/password', passwordauth)
 app.use('/webauthn', webuathnauth)
 
 
+var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+app.listen(server_port, server_host, function() {
+    console.log('Listening on port %d', server_port);
+});
 
 
 
 
-const port = config.port || 3000;
-app.listen(port,()=>console.log(`Started app on port ${port}`));
-//sample test port 3000
-//server http
 
-
-//const port = 8080;
-//var server = https.createServer(options, app).listen(port,()=>console.log(`Started app on port ${port}`));
 module.exports = app;
+
+
+
