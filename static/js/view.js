@@ -21,11 +21,10 @@ let loadMainContainer = () => {
         .then((response) => response.json())
         .then((response) => {
             if(response.status === 'ok') {
-                $('#theSecret').html(response.theSecret)
-                $('#name').html(response.name)
                 $('#registerContainer').hide();
                 $('#loginContainer').hide();
                 $('#mainContainer').show();
+		alert("done");
             } else {
                 alert(`Error! ${response.message}`)
             }
