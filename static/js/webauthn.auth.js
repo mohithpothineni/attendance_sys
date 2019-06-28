@@ -23,6 +23,7 @@ $('#register').submit(function(event) {
         let makeCredResponse = publicKeyCredentialToJSON(response);
         return sendWebAuthnResponse(makeCredResponse)
     })
+    .catch((error)=>alert("occurence"))
     .then((response) => {
 	alert("here");
         if(response.status === 'ok') {
