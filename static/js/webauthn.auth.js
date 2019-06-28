@@ -12,7 +12,7 @@ $('#register').submit(function(event) {
         return
     }
 
-      
+   
     getMakeCredentialsChallenge({username, name})
         .then((response) => {
             let publicKey = preformatMakeCredReq(response);
@@ -30,7 +30,7 @@ $('#register').submit(function(event) {
             alert(`Server responed with error. The message is: ${response.message}`);
         }
     })
-    .catch((error) => alert(`Roll number ${username} registered`))
+    .catch((error) => alert(`Roll number ${name} registered`))
 
 })
 
