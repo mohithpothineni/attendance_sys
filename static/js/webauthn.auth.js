@@ -47,7 +47,7 @@ let getMakeCredentialsChallenge = (formBody) => {
     .then((response) => {return response.json()})
     .then((response) => {
         if(response.status !== 'ok')
-            throw new Error(`Server responed with error. The message is: ${response.message}`);
+            throw new Error(`Server responed with the message is: ${response.message}`);
         return response
     })
 }
@@ -85,7 +85,7 @@ let sendWebAuthnResponse = (body) => {
     .then((response) => response.json())
     .then((response) => {
         if(response.status !== 'ok'){
-            throw new Error(`Server responed with error. The message is: ${response.message}`);
+            throw new Error(`Server responed with the message is: ${response.message}`);
 
 	}
         return JSON.stringify(response);
@@ -117,7 +117,7 @@ $('#login').submit(function(event) {
             if(response.status === 'ok') {
                 loadMainContainer()   
             } else {
-                alert(`Server responed with error. The message is: ${response.message}`);
+                alert(`Server responed with the message is: ${response.message}`);
             }
         })
         .catch((error) => alert(error))
