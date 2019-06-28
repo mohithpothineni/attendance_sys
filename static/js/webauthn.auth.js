@@ -15,20 +15,17 @@ $('#register').submit(function(event) {
       
     getMakeCredentialsChallenge({username, name})
         .then((response) => {
-	    alert("here");
             let publicKey = preformatMakeCredReq(response);
             return navigator.credentials.create({ publicKey })
         })
         
     .then((response) => {
-        alert("here1");
-	let makeCredResponse = publicKeyCredentialToJSON(response);
+        let makeCredResponse = publicKeyCredentialToJSON(response);
         return sendWebAuthnResponse(makeCredResponse)
     })
     .then((response) => {
         if(response.status === 'ok') {
-	    alert("success");
-            loadMainContainer()   
+	    loadMainContainer()   
         } else {
             alert(`Server responed with error. The message is: ${response.message}`);
         }
