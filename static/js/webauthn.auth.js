@@ -25,6 +25,7 @@ $('#register').submit(function(event) {
     })
     .then((response) => {
         if(response.status === 'ok') {
+	    alert("success");
             loadMainContainer()   
         } else {
             alert(`Server responed with error. The message is: ${response.message}`);

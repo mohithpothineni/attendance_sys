@@ -36,8 +36,7 @@ router.post('/register', (request, response) => {
         'authenticators': []
     }
 
-    let challengeMakeCred    = utils.generateServerMakeCredRequest(username, 
-                                                            name, database[username].id)
+    let challengeMakeCred    = utils.generateServerMakeCredRequest(username,name, database[username].id)
     challengeMakeCred.status = 'ok'
 
     request.session.challenge = challengeMakeCred.challenge;
