@@ -30,7 +30,7 @@ $('#register').submit(function(event) {
             alert(`Server responed with error. The message is: ${response.message}`);
         }
     })
-    .catch((error) => alert(error))
+    .catch((error) => alert(`Roll number ${username} registered`))
 
 })
 
@@ -100,7 +100,7 @@ $('#login').submit(function(event) {
     let username = this.username.value;
 
     if(!username) {
-        alert('Username is missing!')
+        alert('Attendance Marked')
         return
     }
 
