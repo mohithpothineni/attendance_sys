@@ -23,9 +23,7 @@ $('#register').submit(function(event) {
         let makeCredResponse = publicKeyCredentialToJSON(response);
         return sendWebAuthnResponse(makeCredResponse)
     })
-    .catch((error)=>alert("occurence"))
     .then((response) => {
-	alert("here");
         if(response.status === 'ok') {
 	    loadMainContainer()   
         } else {
@@ -86,10 +84,11 @@ let sendWebAuthnResponse = (body) => {
     })
     .then((response) => response.json())
     .then((response) => {
-        if(response.status !== 'ok')
+        if(response.status !== 'ok'){
             throw new Error(`Server responed with error. The message is: ${response.message}`);
 
-        return response
+	}
+        return JSON.stringify(response);
     })
 }
 
