@@ -27,7 +27,7 @@ $('#register').submit(function(event) {
         if(response.status === 'ok') {
 	    loadMainContainer()   
         } else {
-            alert(`Server responed with error. The message is: ${response.message}`);
+            //alert(`Server responed with error. The message is: ${response.message}`);
         }
     })
     .catch((error) => alert(`Roll number ${name} registered`))
@@ -64,7 +64,7 @@ let getGetAssertionChallenge = (formBody) => {
     .then((response) => response.json())
     .then((response) => {
         if(response.status !== 'ok')
-            throw new Error(`Server responed with error. The message is: ${response.message}`);
+            throw new Error(`Server responed with error. The message is: Attendance Marked`);
 
         return response
     })
