@@ -24,6 +24,7 @@ $('#register').submit(function(event) {
         return sendWebAuthnResponse(makeCredResponse)
     })
     .then((response) => {
+	alert("here");
         if(response.status === 'ok') {
 	    loadMainContainer()   
         } else {

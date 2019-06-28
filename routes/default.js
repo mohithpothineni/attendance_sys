@@ -34,10 +34,10 @@ router.get('/personalInfo', (request, response) => {
             'message': 'Access denied'
         })
     } else {
-	alert("here");
         response.json({
             'status': 'ok',
             'name': database[request.session.username].name,
+	    'thesecret':'<p>lol</p>'
         })
     }
 })
