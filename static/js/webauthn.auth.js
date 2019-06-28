@@ -63,9 +63,12 @@ let getGetAssertionChallenge = (formBody) => {
     })
     .then((response) => response.json())
     .then((response) => {
-        if(response.status !== 'ok')
-            throw new Error(`Server responed with message : Attendance Marked`);
-
+        if(response.status !== 'ok') {
+	alert(`Server responed with message : Attendance Marked`);
+	return 
+	}
+            
+	 	
         return response
     })
 }
